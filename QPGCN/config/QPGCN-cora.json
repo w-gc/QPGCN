@@ -1,0 +1,38 @@
+{
+    "name": "QPGCN",
+    "Train": {
+        "dataset": "cora",
+        "max_epoch": 1000,
+        "batch_size": 1,
+        "seed": 32,
+        "no_cuda": 0, 
+        "fastmode": 0,
+        "patience": 200,
+        "support_l2": 0.01
+    },
+    "Optimizer": {
+        "mode": "Adam",
+        "lr": 0.001,
+        "weight_decay": 2e-3
+    },
+    "Layers": [
+        {
+            "out_dim": 128,
+            "bias": 0,
+            "name": "GraphConvolution",
+            "support": {"name": "DeltaQPF", "learnable": ["alpha", "beta"], "power": 1, "gamma": 1.7, "alpha": [-0.2], "beta": [0.2]},
+            "activation": "relu",
+            "dropout": 0.75,
+            "input_path": []
+        },
+        {
+            "out_dim": 7,
+            "bias": 0,
+            "name": "GraphConvolution",
+            "support": {"name": "DeltaQPF", "learnable": ["alpha", "beta"], "power": 1, "gamma": 1.0, "alpha": [-0.2], "beta": [0.2]},
+            "activation": "none",
+            "dropout": 0.75,
+            "input_path": [-1]
+        }
+    ]
+}

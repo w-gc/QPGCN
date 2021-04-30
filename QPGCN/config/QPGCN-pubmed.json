@@ -1,0 +1,38 @@
+{
+    "name": "",
+    "Train": {
+        "dataset": "pubmed",
+        "max_epoch": 1000,
+        "batch_size": 1,
+        "seed": 42,
+        "no_cuda": 0, 
+        "fastmode": 0,
+        "patience": 500,
+        "support_l2": 0.1
+    },
+    "Optimizer": {
+        "mode": "Adam",
+        "lr": 0.001,
+        "weight_decay": 2e-3
+    },
+    "Layers": [
+        {
+            "out_dim": 32,
+            "bias": 0,
+            "name": "GraphConvolution",
+            "support": {"name": "DeltaQPF", "learnable": ["alpha", "beta"], "power": 1, "gamma": 0.9, "alpha": [-0.2], "beta": [0.2]},
+            "activation": "relu",
+            "dropout": 0.8,
+            "input_path": []
+        },
+        {
+            "out_dim": 7,
+            "bias": 0,
+            "name": "GraphConvolution",
+            "support": {"name": "DeltaQPF", "learnable": ["alpha", "beta"], "power": 1, "gamma": 1, "alpha": [-0.2], "beta": [0.2]},
+            "activation": "none",
+            "dropout": 0.7,
+            "input_path": [-1]
+        }
+    ]
+}
