@@ -224,8 +224,8 @@ def col_diff(x):
     return row_diff( (x / torch.norm(x, p=1, dim=0)).T )
 
 @torch.no_grad()
-def DirichletEnergy(x, add):
+def DirichletEnergy(x, adj):
     from support_utils import normalize_adj
     N = adj.shape[0]
     L = torch.eye(N) - normalize_adj(adj, gamma=0.0, sparse=False)
-    return 2 * x.T.mm(torch.mm(L.to(x.device), x))
+    return torch.trace(x.T.mm(torch.mm(L.to(x.device), x))).item()
