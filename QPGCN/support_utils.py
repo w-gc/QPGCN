@@ -48,9 +48,6 @@ def pre_support(adj, sup_dict, sparse=True):
     elif sup_dict['name'] == 'DeltaQPF':
         support = DeltaQPF(A_tilde=adj, degrees=sup_dict['degrees'], C=sup_dict['C'], gamma=sup_dict['gamma'], alpha=sup_dict['alpha'], beta=sup_dict['beta'], sparse=sparse)
 
-    elif sup_dict['name'] == 'Exponential':
-        support = exponential(adj, gamma=sup_dict['gamma'], mu=sup_dict['mu'], sigma=sup_dict['sigma']).matrix_power(sup_dict['power'])
-    
     else:
         raise ValueError("The support method '{}' has NOT been implemented yet ".format(sup_dict['name']))
 
@@ -79,7 +76,7 @@ def Adj_tilde(adj, gamma = 1.0, sparse=True):
     """
     N = adj.shape[0]
     degrees = torch.sparse.sum(adj, dim = 1).to_dense()
-    degrees += gamma * torch.ones(adj.shape[0]).to()
+    degrees += gamma * torch.ones(adj.shape[0]).to(adj.device)
     d_inv_sqrt = degrees ** (-0.5)
     d_inv_sqrt[torch.isinf(d_inv_sqrt)] = 0.
     A_tilde = spmMdiagm(spmMdiagm(adj, d_inv_sqrt).transpose(1, 0), d_inv_sqrt).transpose(1, 0) 
@@ -93,12 +90,13 @@ def normalize_adj(adj, gamma = 1.0, sparse=True):
         :math: `D^{-1/2} A D^{-1/2}`
     """
     N = adj.shape[0]
+    Dev = adj.device
     degrees = torch.sparse.sum(adj, dim = 1).to_dense()
-    degrees += gamma * torch.ones(adj.shape[0]).to()
+    degrees += gamma * torch.ones(N).to(Dev)
     d_inv_sqrt = degrees ** (-0.5)
     d_inv_sqrt[torch.isinf(d_inv_sqrt)] = 0.
     norm_adj = spmMdiagm(spmMdiagm(adj, d_inv_sqrt).transpose(1, 0), d_inv_sqrt).transpose(1, 0) \
-                + torch.sparse.FloatTensor( torch.LongTensor((range(N), range(N))).to(adj.device), gamma * d_inv_sqrt ** 2,  torch.Size([N, N]) )
+                + torch.sparse.FloatTensor( torch.LongTensor((range(N), range(N))).to(Dev), gamma * d_inv_sqrt ** 2,  torch.Size([N, N]) )
 
     if not sparse:
         return norm_adj.to_dense()
