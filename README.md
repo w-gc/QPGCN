@@ -23,10 +23,10 @@ pip install -r requirements.txt
 To train the model(s) in the paper, run this command:
 
 ```train
-python run.py ./config/QPGCN-cora.json
-python run.py ./config/QPGCN-citseer.json
-python run.py ./config/QPGCN-pubmed.json
-python run.py ./config/QPGCN-dblp.json
+python run.py --config ./config/QPGCN-cora.json
+python run.py --config ./config/QPGCN-citeseer.json
+python run.py --config ./config/QPGCN-pubmed.json
+python run.py --config ./config/QPGCN-dblp.json
 ```
 
 <!-- >📋  Describe how to train the models, with example commands on how to train the models in your paper, including the full training procedure and appropriate hyperparameters. -->
