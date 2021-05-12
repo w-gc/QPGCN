@@ -58,14 +58,7 @@ def Identity(N, C = 1, sparse=True, Dev ='cpu'):
     return torch.sparse.FloatTensor( torch.LongTensor((range(N), range(N))).to(Dev), C * torch.ones(N).to(Dev),  torch.Size([N, N]) )
 
 def Adj_power(adj, power = 1):
-    if power == 1:
-        return adj
-    if adj.is_sparse:
-        adj = adj.to_dense()
-        adj_p = torch.matrix_power(adj, power)
-        return adj_p.to_sparse()
-    else:
-        return torch.matrix_power(adj, power)
+    return adj.pow(power)
 
 def normalize_adj(adj, gamma=1.0, sparse=True):
     r"""
