@@ -193,8 +193,8 @@ def chebyshev_polynomials(adj, k, sparse=True):
     return t_k.to_sparse()
 
 def spmMdiagm(spm, diagm):
-    values = diagm[spm.coalesce().indices()[1,:]] * spm.coalesce().values()
-    return torch.sparse.FloatTensor(spm.coalesce().indices(), values,  spm.shape)
+    values = diagm[spm._indices()[1,:]] * spm._values()
+    return torch.sparse.FloatTensor(spm._indices(), values,  spm.shape)
 
 
 def Adj_tilde(adj, gamma = 1.0, sparse=True):
