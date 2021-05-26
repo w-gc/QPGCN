@@ -79,7 +79,7 @@ class Layer(Module):
 
         self.input_path = cfg['input_path']
 
-        self.support_learnable = 'learnable' in  cfg['support']
+        self.support_learnable = 'learnable' in  cfg['support'] and len(cfg['support']['learnable']) != 0
         self.support_dict = deepcopy(cfg['support'])
 
         assert len(self.input_path) <= 1, 'the length of the `input_path` of the Layer\'s object MUST be 0 or 1.'
@@ -97,6 +97,7 @@ class Layer(Module):
                 self.support_dict['C'] = - 1
                 self.support_dict['degrees'] = torch.sparse.sum(adj, dim = 1).to_dense()
         else:
+            self.support_dict['alpha'], self.support_dict['beta'] = self.support_dict['alpha'][0], self.support_dict['beta'][0]
             self.support = pre_support(adj, self.support_dict)
 
         self.init_parameters()
