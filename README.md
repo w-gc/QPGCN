@@ -1,8 +1,8 @@
->📋  A template [README.md](https://github.com/paperswithcode/releasing-research-code/blob/master/templates/README.md) for code accompanying a Machine Learning paper
+<!-- >📋  A template [README.md](https://github.com/paperswithcode/releasing-research-code/blob/master/templates/README.md) for code accompanying a Machine Learning paper -->
 
-# QPGCN: GCN Overcoms Over-smoothing With Quadratic Polynomial Filter
+# QPGCN: Graph Convolutional Network with a Quadratic Polynomial Filter for Overcoming Over-smoothings
 
-This repository is the official implementation of **QPGCN: GCN Overcoms Over-smoothing With Quadratic Polynomial Filter**.
+This repository is the official implementation of [QPGCN: Graph Convolutional Network with a Quadratic Polynomial Filter for Overcoming Over-smoothing](https://openreview.net/forum?id=HwOt9A4dMa).
 
 <!-- This repository is the official implementation of [QPGCN: GCN Overcoms Over-smoothing With Quadratic Polynomial Filter](https://arxiv.org/abs/2030.12345). 
 
@@ -57,7 +57,7 @@ Our model achieves the following performance on :
 
 | Model name         |        Cora      |      Citeseer    |      Pubmed      |      DBLP        |
 | ------------------ | ---------------- | ---------------- | ---------------- | ---------------- |
-|          QPGCN     | 83.31$\pm$0.30\%  | 71.22$\pm$0.44\%  | 79.22$\pm$0.40\%  | 85.92$\pm$0.72\%  |
+|          QPGCN     | 83.31 $\pm$ 0.30\%  | 71.22 $\pm$ 0.44\%  | 79.22 $\pm$ 0.40\%  | 85.92 $\pm$ 0.72\%  |
 
 <!-- >📋  Include a table of results from your paper, and link back to the leaderboard for clarity and context. If your main result is a figure, include that figure and link to the command or notebook to reproduce it.  -->
 
