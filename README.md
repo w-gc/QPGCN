@@ -4,8 +4,6 @@
 
 This repository is the official implementation of [QPGCN: Graph Convolutional Network with a Quadratic Polynomial Filter for Overcoming Over-smoothing](https://link.springer.com/content/pdf/10.1007/s10489-022-03836-2.pdf).
 
->📋  Optional: include a graphic explaining your approach/main result, bibtex entry, link to demos, blog posts and tutorials -->
-
 ## Requirements
 
 To install requirements:
